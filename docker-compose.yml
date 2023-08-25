@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  backendserver:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace:cached
+    networks:
+      - simple_config
+    ports:
+      - 8080:8080
+
+  frontendserver:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace:cached
+    networks:
+      - simple_config
+    ports:
+      - 3000:3000
+
+
+
+networks:
+  simple_config:
