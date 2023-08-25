@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
             <title>Frontend</title>
             <script>
                 function fetchMessage() {
-                    fetch('http://localhost:8080/api')
+                    fetch('/fast/api')
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById('message').innerText = data.message;

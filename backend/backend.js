@@ -4,7 +4,9 @@ const cors = require('cors');
 const app = express();
 const PORT = 8080;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://frontendserver:3000'
+}));
 
 app.get('/api', (req, res) => {
     res.json({ message: 'Message on HTTP' });

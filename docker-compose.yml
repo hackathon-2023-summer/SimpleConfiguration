@@ -1,5 +1,16 @@
 version: '3.9'
 services:
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/log:/var/log/nginx
+    networks:
+      - simple_config
+    ports:
+      - 80:80
+
   backendserver:
     build:
       context: ./backend
@@ -8,8 +19,8 @@ services:
       - .:/workspace:cached
     networks:
       - simple_config
-    ports:
-      - 8080:8080
+    expose:      
+      - 8080
 
   frontendserver:
     build:
@@ -19,10 +30,8 @@ services:
       - .:/workspace:cached
     networks:
       - simple_config
-    ports:
-      - 3000:3000
-
-
+    expose:      
+      - 3000
 
 networks:
   simple_config:
